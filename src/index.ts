@@ -3,11 +3,17 @@ import {
   assetRepository,
   employeeRepository,
 } from "./dataSource";
+import { Asset } from "./entity/Asset";
+import { Employee } from "./entity/Employee";
 
 AppDataSource.initialize()
   .then(async () => {
     console.log("Connected");
-    await seed();
+    // await seed();
+
+    getAssetById(5).then((data) => {
+      console.log(data);
+    });
   })
   .catch((error) => console.log(error));
 
@@ -16,15 +22,28 @@ const seed = async () => {
     name: "Adam",
     department: "SD",
   });
-  const res = await employeeRepository.save(emp);
-  console.log("🚀 ~ seed ~ res:", res);
+  await employeeRepository.save(emp);
 
   const asset = assetRepository.create({
     assetName: "Hp Laptop",
     assetType: "IT",
-    employee: res,
+    employee: emp,
   });
 
-  const resp = await assetRepository.save(asset);
-  console.log("🚀 ~ seed ~ resp:", resp);
+  await assetRepository.save(asset);
+};
+
+const getEmployeeById = async (id: number): Promise<Employee> => {
+  return employeeRepository.findOne({
+    where: { employeeId: id },
+  });
+};
+
+const getAssetById = async (id: number): Promise<Asset> => {
+  return assetRepository.findOne({
+    where: {
+      assetId: id,
+    },
+    relations: ["employee"],
+  });
 };

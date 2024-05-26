@@ -19,7 +19,7 @@ export class Asset {
   assetType: string;
 
   @OneToOne(() => Employee, (employee) => employee.employeeId, {
-    onDelete: "SET NULL",
+    onDelete: "CASCADE",
   })
   @JoinColumn({ name: "employeeId" })
   employee: Employee;
