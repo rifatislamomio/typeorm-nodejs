@@ -2,7 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity({ name: "employees" })
 export class Employee {
-  @PrimaryGeneratedColumn({type:"int"})
+
+  @PrimaryGeneratedColumn("increment", { type: "integer" })
   employeeId: number;
 
   @Column({ type: "varchar", length: "100" })

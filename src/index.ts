@@ -1,18 +1,30 @@
-import { AppDataSource } from "./data-source"
-import { Employee } from "./entity/Employee"
+import {
+  AppDataSource,
+  assetRepository,
+  employeeRepository,
+} from "./dataSource";
 
-AppDataSource.initialize().then(async () => {
+AppDataSource.initialize()
+  .then(async () => {
+    console.log("Connected");
+    await seed();
+  })
+  .catch((error) => console.log(error));
 
-    console.log("Inserting a new employee into the database...")
-    const employee = new Employee()
-    employee.name = "Alex"
-    employee.department = "IT"
-    await AppDataSource.manager.save(employee)
-    console.log("Saved a new employee with id: " + employee.employeeId)
+const seed = async () => {
+  const emp = employeeRepository.create({
+    name: "Adam",
+    department: "SD",
+  });
+  const res = await employeeRepository.save(emp);
+  console.log("🚀 ~ seed ~ res:", res);
 
-    console.log("Loading employees from the database...")
-    
-    
+  const asset = assetRepository.create({
+    assetName: "Hp Laptop",
+    assetType: "IT",
+    employee: res,
+  });
 
-}).catch(error => console.log(error))
-
+  const resp = await assetRepository.save(asset);
+  console.log("🚀 ~ seed ~ resp:", resp);
+};
