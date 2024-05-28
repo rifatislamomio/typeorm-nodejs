@@ -9,11 +9,7 @@ import { Employee } from "./entity/Employee";
 AppDataSource.initialize()
   .then(async () => {
     console.log("Connected");
-    // await seed();
-
-    getAssetById(5).then((data) => {
-      console.log(data);
-    });
+    await seed();
   })
   .catch((error) => console.log(error));
 
@@ -24,13 +20,21 @@ const seed = async () => {
   });
   await employeeRepository.save(emp);
 
-  const asset = assetRepository.create({
+  const asset1 = assetRepository.create({
     assetName: "Hp Laptop",
     assetType: "IT",
     employee: emp,
   });
 
-  await assetRepository.save(asset);
+  await assetRepository.save(asset1);
+
+  const asset2 = assetRepository.create({
+    assetName: "Keyboard",
+    assetType: "IT",
+    employee: emp,
+  });
+
+  await assetRepository.save(asset2);
 };
 
 const getEmployeeById = async (id: number): Promise<Employee> => {

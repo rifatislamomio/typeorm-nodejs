@@ -4,6 +4,7 @@ import {
   Column,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from "typeorm";
 import { Employee } from "./Employee";
 
@@ -18,7 +19,7 @@ export class Asset {
   @Column({ type: "varchar", length: "100" })
   assetType: string;
 
-  @OneToOne(() => Employee, (employee) => employee.employeeId, {
+  @ManyToOne(() => Employee, (employee) => employee.employeeId, {
     onDelete: "CASCADE",
   })
   @JoinColumn({ name: "employeeId" })
