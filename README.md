@@ -1,7 +1,5 @@
-# Awesome Project Build with TypeORM
+### Typeorm with nodejs with mysql database
 
-Steps to run this project:
+***Database Diagram:***
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+![alt text](https://github.com/rifatislamomio/typeorm-nodejs/blob/main/diagrams/diagram.png?raw=true)
