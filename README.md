@@ -1,4 +1,4 @@
-### Typeorm with nodejs with mysql database
+### Typeorm with nodejs with mysql database (poc)
 
 ***Database Diagram:***
 
