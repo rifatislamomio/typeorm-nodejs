@@ -18,8 +18,12 @@ export class Asset {
   @Column({ type: "varchar", length: "100" })
   assetType: string;
 
+  @Column({ nullable: true, type: "integer" })
+  employeeId: number;
+
+  //Relation
   @ManyToOne(() => Employee, (employee) => employee.employeeId, {
-    onDelete: "CASCADE",
+    onDelete: "SET NULL",
   })
   @JoinColumn({ name: "employeeId" })
   employee: Employee;
