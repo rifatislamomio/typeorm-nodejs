@@ -14,27 +14,17 @@ AppDataSource.initialize()
   .catch((error) => console.log(error));
 
 const seed = async () => {
-  const emp = employeeRepository.create({
-    name: "Adam",
-    department: "SD",
-  });
-  await employeeRepository.save(emp);
+  // const emp = employeeRepository.create({
+  //   name: "Adam",
+  //   department: "SD",
+  // });
+  // await employeeRepository.save(emp);
 
-  const asset1 = assetRepository.create({
-    assetName: "Hp Laptop",
-    assetType: "IT",
-    employee: emp,
-  });
-
-  await assetRepository.save(asset1);
-
-  const asset2 = assetRepository.create({
-    assetName: "Keyboard",
-    assetType: "IT",
-    employee: emp,
-  });
-
-  await assetRepository.save(asset2);
+  const employee = await employeeRepository
+    .createQueryBuilder("employee")
+    .leftJoinAndSelect("employee.assets", "asset")
+    .getMany()
+  console.log("🚀 ~ seed ~ users:", employee)
 };
 
 const getEmployeeById = async (id: number): Promise<Employee> => {
