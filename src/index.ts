@@ -8,7 +8,8 @@ import { Employee } from "./entity/Employee";
 
 AppDataSource.initialize()
   .then(async () => {
-    console.log("Connected");
+    console.log(":::Connected:::");
+
     // await seed();
     getAllEmployees().then((data) =>
       console.log(JSON.stringify(data, null, 2))

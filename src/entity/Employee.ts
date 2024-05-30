@@ -12,6 +12,6 @@ export class Employee {
   @Column({ type: "varchar", length: "100" })
   department: string;
 
-  @OneToMany(() => Asset, (asset) => asset.employee)
+  @OneToMany(() => Asset, (asset) => asset.employeeId)
   assets: Asset[];
 }
