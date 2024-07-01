@@ -10,7 +10,7 @@ AppDataSource.initialize()
   .then(async () => {
     console.log(":::Connected:::");
 
-    // await seed();
+    await seed();
     getAllEmployees().then((data) =>
       console.log(JSON.stringify(data, null, 2))
     );
