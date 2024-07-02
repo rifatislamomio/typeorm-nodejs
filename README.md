@@ -3,7 +3,8 @@
 ***Database Diagram:***
 <br>
 <p align="center">
-  <img src="./diagrams/diagram.png" />
-  <em>One to many relation between tables</em>
+  <img width="50%" align="center" src="./diagrams/diagram.png" />
+  <br>
+  <em align="center">One to many relation between tables</em>
 </p>
 <br>
